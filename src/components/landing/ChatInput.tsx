@@ -15,12 +15,7 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    // Focus automático en mobile y desktop
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
+  // Removed auto-focus to prevent page scroll on load
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

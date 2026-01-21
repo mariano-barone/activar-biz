@@ -20,6 +20,13 @@ export function MainApp() {
 
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // Ensure page starts at the top
+  useEffect(() => {
+    if (currentStep === 'landing') {
+      window.scrollTo(0, 0);
+    }
+  }, [currentStep]);
+
   const handleStartAssessment = (initialMessage?: string) => {
     // Si hay un mensaje inicial, podríamos guardarlo en el store para contexto
     if (initialMessage) {
