@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/store/app-store';
-import { LandingPage } from '@/components/landing/LandingPage';
-import { ChatbotInterface } from '@/components/chatbot/ChatbotInterface';
+import { LandingPage } from '@/components/landing/LandingPageNew';
+import { ChatbotInterface } from '@/components/chatbot/ChatbotInterfaceNew';
 import { RiskMap } from '@/components/results/RiskMap';
 import { assessRisk } from '@/lib/rules/risk-engine';
 import { AssessmentData, ChatbotAnswer, CompanyType, Industry, EmploymentType, Revenue } from '@/types';
@@ -103,9 +103,10 @@ export function MainApp() {
     
     case 'results':
       return riskAssessment ? (
-        <RiskMap 
-          riskAssessment={riskAssessment} 
-          onContinue={handleContinueToQuotes}
+        <ChatbotInterface 
+          onComplete={handleContinueToQuotes}
+          riskAssessment={riskAssessment}
+          showResults={true}
         />
       ) : (
         <div className="min-h-screen flex items-center justify-center">

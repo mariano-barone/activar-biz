@@ -39,7 +39,10 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Chat Input */}
-      <Card className="p-4 sm:p-6 bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg">
+      <Card 
+        className="p-4 sm:p-6 backdrop-blur-sm border border-gray-600 shadow-lg"
+        style={{ backgroundColor: '#0C0E12' }}
+      >
         <form onSubmit={handleSubmit} className="flex items-end gap-3">
           <div className="flex-1">
             <Input
@@ -47,7 +50,8 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Contame sobre tu empresa para empezar..."
-              className="min-h-[52px] text-base resize-none border-border/50 bg-background/50 focus:bg-background transition-colors"
+              className="min-h-[52px] text-base resize-none border-gray-600 text-white placeholder-gray-400 transition-colors"
+              style={{ backgroundColor: '#13161B' }}
               disabled={isTyping}
             />
           </div>
@@ -55,7 +59,8 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
             type="submit" 
             size="lg"
             disabled={!message.trim() || isTyping}
-            className="min-h-[52px] px-4 bg-primary hover:bg-primary/90 text-primary-foreground"
+            className="min-h-[52px] px-4 text-white hover:opacity-90"
+            style={{ backgroundColor: '#2F80ED' }}
           >
             {isTyping ? (
               <div className="animate-spin">
@@ -69,11 +74,11 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
         
         {/* Typing Indicator */}
         {isTyping && (
-          <div className="mt-4 flex items-center gap-2 text-muted-foreground">
+          <div className="mt-4 flex items-center gap-2 text-gray-400">
             <div className="flex gap-1">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#2F80ED' }}></div>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#2F80ED', animationDelay: '0.2s' }}></div>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#2F80ED', animationDelay: '0.4s' }}></div>
             </div>
             <span className="text-sm">Procesando tu información...</span>
           </div>
@@ -82,7 +87,7 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
 
       {/* Suggestions */}
       <div className="mt-6">
-        <p className="text-sm text-muted-foreground mb-3 text-center">
+        <p className="text-sm text-gray-400 mb-3 text-center">
           O probá con uno de estos ejemplos:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -91,7 +96,8 @@ export function ChatInput({ onStartChat }: ChatInputProps) {
               key={index}
               onClick={() => setMessage(suggestion)}
               disabled={isTyping}
-              className="p-3 text-left text-sm bg-muted/50 hover:bg-muted rounded-lg border border-border/30 hover:border-border transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-3 text-left text-sm text-gray-300 rounded-lg border border-gray-600 hover:border-gray-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: '#13161B' }}
             >
               "{suggestion}"
             </button>

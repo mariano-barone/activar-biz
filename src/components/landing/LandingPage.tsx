@@ -3,8 +3,8 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Zap, Target, CheckCircle, TrendingUp, Users, Lock } from 'lucide-react';
-import { Navbar } from '@/components/ui/Navbar';
-import { ChatInput } from './ChatInput';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 interface LandingPageProps {
   onStartAssessment: (initialMessage: string) => void;
@@ -12,28 +12,134 @@ interface LandingPageProps {
 
 export function LandingPage({ onStartAssessment }: LandingPageProps) {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen" style={{ backgroundColor: '#000000' }}>
+      {/* Custom Navbar */}
+      <nav className="flex justify-between items-center p-6">
+        <div className="flex items-center gap-4">
+          <h1 className="text-xl font-bold text-white">activar Biz</h1>
+        </div>
+        <div className="flex items-center gap-6">
+          <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            Sobre Nosotros
+          </a>
+          <Button 
+            className="text-white px-4 py-2 rounded-md"
+            style={{ backgroundColor: '#2F80ED' }}
+          >
+            Iniciar sesión
+          </Button>
+        </div>
+      </nav>
       
       {/* Hero Section */}
-      <section className="pt-12 pb-20 sm:pt-20 sm:pb-32">
+      <section className="relative pt-12 pb-20 sm:pt-20 sm:pb-32 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-12 sm:mb-16">
-            <Badge variant="outline" className="mb-4 sm:mb-6 text-xs sm:text-sm">
-              🚀 MVP Demo • Activar Business
+            <Badge 
+              variant="outline" 
+              className="mb-4 sm:mb-6 text-xs sm:text-sm border-gray-600 text-gray-300"
+              style={{ backgroundColor: '#1A1D23' }}
+            >
+              🚀 MVP Demo • activar Biz →
             </Badge>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight text-white">
               Seguros inteligentes para{' '}
-              <span className="text-primary font-comfortaa">startups</span>
+              <span style={{ color: '#2F80ED' }} className="font-comfortaa">startups</span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed">
               Diagnosticamos los riesgos de tu empresa y te recomendamos las coberturas exactas que necesitas.{' '}
-              <span className="text-primary font-medium">Todo en menos de 5 minutos.</span>
+              <span style={{ color: '#2F80ED' }} className="font-medium">Todo en menos de 5 minutos.</span>
             </p>
             
-            <ChatInput onStartChat={onStartAssessment} />
+            {/* Custom Chat Input */}
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center gap-3 p-4 rounded-lg border border-gray-600" style={{ backgroundColor: '#1A1D23' }}>
+                <input
+                  type="text"
+                  placeholder="Contanos sobre tu empresa para empezar..."
+                  className="flex-1 bg-transparent text-white placeholder-gray-400 outline-none text-base"
+                  onClick={() => onStartAssessment('')}
+                  readOnly
+                />
+                <Button 
+                  onClick={() => onStartAssessment('')}
+                  className="text-white px-6 py-2 text-sm font-medium"
+                  style={{ backgroundColor: '#2F80ED' }}
+                >
+                  Enviar
+                </Button>
+              </div>
+              
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-400 mb-3">
+                  O probá con uno de estos ejemplos:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button
+                    onClick={() => onStartAssessment('Tengo una startup tech con 5 empleados')}
+                    className="p-3 text-left text-sm text-gray-300 rounded-lg border border-gray-600 hover:border-gray-500 transition-all duration-200"
+                    style={{ backgroundColor: '#13161B' }}
+                  >
+                    "Tengo una startup tech con 5 empleados"
+                  </button>
+                  <button
+                    onClick={() => onStartAssessment('Tengo una startup tech con 5 empleados')}
+                    className="p-3 text-left text-sm text-gray-300 rounded-lg border border-gray-600 hover:border-gray-500 transition-all duration-200"
+                    style={{ backgroundColor: '#13161B' }}
+                  >
+                    "Tengo una startup tech con 5 empleados"
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Insurance Partners Section */}
+      <section className="py-16 sm:py-24 border-t border-gray-700" style={{ backgroundColor: '#0C0E12' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-400 mb-2">
+              Nos respaldan
+            </h2>
+            <p className="text-sm text-gray-500">
+              Trabajamos con las principales aseguradoras del país
+            </p>
+          </div>
+          
+          <div className="flex items-center justify-center gap-8 sm:gap-12 md:gap-16 flex-wrap opacity-80">
+            <div className="flex items-center justify-center h-16 w-24">
+              <Image
+                src="/Logo_Meridional_Blanco-01@2x.png"
+                alt="Meridional Seguros"
+                width={400}
+                height={350}
+                className="opacity-70 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+            
+            <div className="flex items-center justify-center h-16 w-24">
+              <Image
+                src="/Allianz logo blanco.png"
+                alt="Allianz Seguros"
+                width={400}
+                height={350}
+                className="opacity-70 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+            
+            <div className="flex items-center justify-center h-16 w-24">
+              <Image
+                src="/integrity logo 1.png"
+                alt="Integrity Seguros"
+                width={400}
+                height={350}
+                className="opacity-70 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -184,7 +290,14 @@ export function LandingPage({ onStartAssessment }: LandingPageProps) {
               <span className="block mt-2 text-primary font-medium">✨ Sin compromiso • Resultados inmediatos • 100% gratis</span>
             </p>
             
-            <ChatInput onStartChat={onStartAssessment} />
+            {/* Call to action button */}
+            <Button 
+              onClick={() => onStartAssessment('')}
+              className="text-white px-8 py-3 text-lg"
+              style={{ backgroundColor: '#2F80ED' }}
+            >
+              Empezar diagnóstico
+            </Button>
           </div>
         </div>
       </section>
